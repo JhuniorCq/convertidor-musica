@@ -1,0 +1,13 @@
+.contenedor-loading {
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-spinner {
+    position: absolute;
+}
