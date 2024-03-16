@@ -9,6 +9,8 @@ const convertMusic = async (req, res) => {
         const title = info.videoDetails.title.replace(/[^\w\s]/gi, '');
         const videoPath = path.join(__dirname, '..', '..', '..', 'front-end', 'public', 'music', `${title}.mp4` );
 
+        console.log('El titulo es: ', title);
+
         if(fs.existsSync(videoPath)) {
             return res.json({ success: true, titulo: `${title}.mp4` });
         }
