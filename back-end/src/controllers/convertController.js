@@ -1,35 +1,28 @@
-const fs = require('fs');
-const ytdl = require('ytdl-core'); 
-const path = require('path');
+import path from "node:path";
+import { MUSIC_PATH } from "../../constants.js";
+import youtubedl from "youtube-dl-exec";
 
 const convertMusic = async (req, res) => {
-    try {
-        const { url } = req.body;
-        const info = await ytdl.getInfo(url);
-        const title = info.videoDetails.title.replace(/[^\w\s]/gi, '');
-        const videoPath = path.join(__dirname, '..', '..', '..', 'front-end', 'public', 'music', `${title}.mp4` );
+  try {
+    const { url } = req.body;
 
-        console.log('El titulo es: ', title);
+    const outputPath = path.resolve(MUSIC_PATH, `${Date.now()}.mp3`);
+    console.log(Date.now(), `${Date.now()}`);
+    console.log(outputPath);
 
-        if(fs.existsSync(videoPath)) {
-            return res.json({ success: true, titulo: `${title}.mp4` });
-        }
+    await youtubedl(url, {
+      extractAudio: true,
+      audioFormat: "mp3",
+      output: outputPath,
+    });
 
-        const videoStream = ytdl(url, { filter: 'audioonly' });
-        videoStream.pipe(fs.createWriteStream(videoPath));
+    res.json({ success: true, title: outputPath });
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .json({ success: false, message: "Error al convertir el video" });
+  }
+};
 
-        videoStream.on('end', () => {
-            res.json({ success: true, titulo: `${title}.mp4` });
-        });
-
-    } catch(err) {
-        console.error('', err);
-        res.status(500).json({ success: false, message: 'Error al obtener la información del video' });
-    }
-}
-
-module.exports = {
-    convertMusic
-}
-
-//CONVERSIÓN A MP3 EXITOSO
+export { convertMusic };

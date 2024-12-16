@@ -1,9 +1,8 @@
-const { Router } = require('express');
+import { Router } from "express";
+import { convertMusic } from "../controllers/convertController.js";
+
 const router = Router();
-const {convertMusic} = require('../controllers/convertController.js');
 
-router.post('/convert', convertMusic);
+router.post("/convert", convertMusic);
 
-module.exports = {
-    router
-}
+export { router };
