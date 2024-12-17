@@ -1,12 +1,12 @@
-.contenedor-principal {
+.app-box {
   width: 100%;
   min-height: 100vh;
+  padding-top: 30vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 2rem;
+  gap: 50px;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(0.3rem);
+  overflow-x: hidden;
 }
-

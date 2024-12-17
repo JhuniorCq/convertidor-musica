@@ -1,13 +1,12 @@
+import { ConvertMusic } from "./components/ConvertMusic/ConvertMusic";
 import "./App.css";
-import ConvertMusic from "./components/ConvertMusic";
 
 function App() {
   return (
-    <div className="contenedor-principal">
+    <div className="app-box">
       <ConvertMusic />
     </div>
   );
-  
 }
 
 export default App;
