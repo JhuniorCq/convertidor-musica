@@ -77,12 +77,13 @@
   gap: 30px;
   transform: translateX(100%);
   opacity: 0;
-  /* transition: transform 0.1s ease-in-out, opacity 1s ease-in-out; */
+  position: fixed;
 }
 
 .convert-music__download-box--show {
   transform: translateX(0);
   opacity: 1;
+  position: static;
 }
 
 .convert-music__download-text {
