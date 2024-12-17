@@ -4,6 +4,7 @@ import { usePost } from "../../hooks/usePost";
 import { URL_SERVER } from "../../utils/constants";
 import { Loader } from "../Loader/Loader";
 import "./ConvertMusic.css";
+import { validateMusicURL } from "../../utils/validations";
 
 export const ConvertMusic = () => {
   const [convertedMusic, setConvertedMusic] = useState(false);
@@ -16,8 +17,15 @@ export const ConvertMusic = () => {
   const convertVideo = (e) => {
     e.preventDefault();
 
-    if (!form["url-input"]) {
-      alert("Ingrese una URL");
+    const musicURL = form["url-input"];
+
+    const validatedURL = validateMusicURL(musicURL);
+
+    if (!validatedURL.success) {
+      let errorMessages = validatedURL.error.issues;
+      errorMessages = errorMessages.map((error) => error.message);
+      errorMessages = errorMessages.join("\n");
+      alert(errorMessages);
       return;
     }
 
@@ -55,7 +63,7 @@ export const ConvertMusic = () => {
       {loadingPost ? (
         <Loader />
       ) : errorPost ? (
-        <div>Error: {errorPost}</div>
+        <div className="convert-music__download-text">{errorPost}</div>
       ) : (
         <div
           className={`convert-music__download-box ${
