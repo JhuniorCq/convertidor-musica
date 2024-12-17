@@ -3,8 +3,8 @@ import { useForm } from "../../hooks/useForm";
 import { usePost } from "../../hooks/usePost";
 import { URL_SERVER } from "../../utils/constants";
 import { Loader } from "../Loader/Loader";
-import "./ConvertMusic.css";
 import { validateMusicURL } from "../../utils/validations";
+import "./ConvertMusic.css";
 
 export const ConvertMusic = () => {
   const [convertedMusic, setConvertedMusic] = useState(false);

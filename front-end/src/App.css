@@ -1,12 +1,19 @@
 .app-box {
   width: 100%;
   min-height: 100vh;
-  padding-top: 30vh;
+  padding: 80px 90px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 50px;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(0.3rem);
   overflow-x: hidden;
+}
+
+@media (max-width: 620px) {
+  .app-box {
+    padding: 80px 50px;
+  }
 }
